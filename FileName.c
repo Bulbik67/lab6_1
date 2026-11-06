@@ -2,63 +2,72 @@
 #include <stdio.h>
 #include <locale.h>
 
+int task1();
+int task2();
+int task3();
 
-int remainder_by_4(int year);
-int is_leap_year(int year);
-
-int main(void)
-{
-    setlocale(LC_ALL,".UTF8");
-
-    int year;
-    int rem;
-    int leap;
-
-    printf(" Зад 1\n");
-    printf("Введите год: ");
-    if (scanf("%d", &year) != 1 || year <= 0)
-    {
-        printf("Ошибка: нужно ввести целое положительное число.\n");
-        return 1;
-    }
-
-    
-    rem = remainder_by_4(year);
-    printf("Остаток от деления на 4: %d\n", rem);
-    if (rem == 0)
-        printf("год %d високосный\n", year);
-    else
-        printf("год %d не високосный\n", year);
-
-    
-    leap = is_leap_year(year);
-    if (leap)
-        printf("год %d високосный\n", year);
-    else
-        printf("год %d не високосный\n", year);
-
-
-   
-    double x;
-
-    printf("\n Зад 2\n");
-    printf("Введите значение x: ");
-    scanf("%lf", &x);
-
-    
-    printf("F(%.2lf) = %.2lf\n", x, (x <= -3) ? 9.0 : (1.0 / (x * x + 1.0)));
-
-    return 0;
+int main() {
+	setlocale(LC_CTYPE, "RUS");
+	task1();
+	task2();
+	task3();
+	return 0;
 }
 
-
-int remainder_by_4(int year)
+int task1()
 {
-    return year % 4;
+	printf("Задача 1\n\n");
+	printf("123\n");
+	printf("1\n\t2\n\t\t3\n");
+	printf("%d\n\t%d\n\t\t%d\n\t\t\t%d\n", 1, 2, 3, 4);
+	printf("%10.5f\n ", 12.234657);
+	printf("Остаток от деления %d на %d равен %d\n ", 5, 2, 5 % 2);
+	printf("Остаток от деления %d на %d равен %d\n ", 7, 5, 7 % 5);
+	printf("Произведение %d на %d равно %d\n ", 2000, 4, 2000 * 4);
+	printf("%g разделить на %e равно %f\n ", 5., 2000000., 5. / 2000000);
+	printf("%f разделить на %f равно %f\n ", 5., 2000000., 5. / 2000000);
+	printf("%f разделить на %f равно %f\n ", 5., 2000000., 5. / 2000000);
+	printf("%e разделить на %e равно %e\n ", 5., 2000000., 5. / 2000000);
+	return 0;
 }
 
-
-int is_leap_year(int year)
+int task2()
 {
-    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+	int N = 4, K = 5;
+	printf("\nЗадача 2\n\n");
+	printf("Поезд %d часов и %d минут\n", N, K);
+	printf("Всего %d минут в пути\n", N * 60 + K);
+	printf("До конца суток %d часов и %d минут\n", 12 - N - 1, 60 - K);
+	printf("В 8.00 поезд %d часов\n", (((N * 4) * 60) * K) * 60);
+	printf("Прошло час = %.3f суток и прошло минут = %.2f часа\n", N / 24.0, K / 60.0);
+	return 0;
+}
+
+int task3()
+{
+	int n, request;
+
+	printf("\nЗадача 3\n\n");
+	printf("Введите число N (N < 1000): ");
+	scanf("%d", &n);
+
+	printf("Введите 1, чтобы узнать первую цифру, или 2, чтобы узнать последнюю: ");
+	scanf("%d", &request);
+
+	if (request == 1) {
+		int first_digit = n;
+		while (first_digit >= 10) {
+			first_digit /= 10;
+		}
+		printf("Первая цифра числа %d: %d\n", n, first_digit);
+	}
+	else if (request == 2) {
+		int last_digit = n % 10;
+		printf("Последняя цифра числа %d: %d\n", n, last_digit);
+	}
+	else {
+		printf("Неверный запрос. Нужно ввести 1 или 2.\n");
+	}
+
+	return 0;
 }
